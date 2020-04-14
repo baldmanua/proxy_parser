@@ -37,9 +37,26 @@ use Illuminate\Support\Carbon;
  */
 class SpysOneFilterSet extends Model
 {
-
+    /**
+     * @return Builder|Model|object|null
+     */
     public static function getOldestUpdated()
     {
         return self::oldest('updated_at')->first();
+    }
+
+    /**
+     * @return array
+     */
+    public function toFilterArray() :array
+    {
+        $array = $this->toArray();
+        unset(
+            $array['id'],
+            $array['status'],
+            $array['created_at'],
+            $array['updated_at']
+        );
+        return $array;
     }
 }

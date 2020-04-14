@@ -24,7 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('command:parse-spys-one')
+            ->withoutOverlapping()
+            ->everyMinute();
+//            ->between('23:00', '4:00');
     }
 
     /**
